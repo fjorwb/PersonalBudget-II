@@ -1,0 +1,6 @@
+POST http://localhost:3000/budget/income
+Content-Type: application/json
+
+{
+  "income": 4000
+}

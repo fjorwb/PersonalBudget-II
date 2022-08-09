@@ -111,6 +111,8 @@ paths:
               $ref: '#/components/schemas/createExpensesRequest'
             example:
               name: gas
+              seller: Shell
+              detail: full tank
               amount: 20
         required: true
       responses:
@@ -164,6 +166,28 @@ paths:
           description: ''
           headers: {}
       deprecated: false
+  /budget/income:
+    post:
+      tags:
+      - Balance
+      summary: setIncome
+      operationId: setIncome
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/setIncomeRequest'
+            example:
+              income: 1500
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+
   /budget:
     post:
       tags:
@@ -228,16 +252,24 @@ components:
       title: createExpensesRequest
       required:
       - name
+      - seller
+      - detail
       - amount
       type: object
       properties:
         name:
+          type: string
+        seller:
+          type: string
+        detail:
           type: string
         amount:
           type: integer
           format: int32
       example:
         name: gas
+        seller: shell
+        detail: full tank
         amount: 20
     updateExpenseRequest:
       title: updateExpenseRequest
@@ -261,6 +293,17 @@ components:
           format: int32
       example:
         budget: 1200
+    setIncomeRequest:
+      title: setIncomeRequest
+      required:
+      - income
+      type: object
+      properties:
+        income:
+          type: integer
+          format: int32
+      example:
+        income: 1500
 tags:
 - name: Envelopes
 - name: Expenses

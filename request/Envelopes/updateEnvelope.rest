@@ -1,6 +1,6 @@
-PUT http://localhost:3000/env/transportation
+PUT http://localhost:3000/env/groceries
 Content-Type: application/json
 
 {
-  "amount" : 275
+  "amount" : 1200
 }

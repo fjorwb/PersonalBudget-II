@@ -2,7 +2,8 @@ POST http://localhost:3000/expenses
 Content-Type: application/json
 
 {
-  "name": "gas",
-  "detail": "full tank",
-  "amount": 145
+  "name": "utilities",
+  "seller": "Cinema",
+  "detail": "soap, shampoo & tp",
+  "amount": 44
 }

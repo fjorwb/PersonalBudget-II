@@ -19,6 +19,7 @@ const database = async () => {
     CREATE TABLE IF NOT EXISTS expenses(
       id          INT,
       name        VARCHAR(30),
+      seller      VARCHAR(90),
       detail      VARCHAR(90),
       amount      NUMERIC(12,2),
       date        BIGINT
@@ -28,6 +29,7 @@ const database = async () => {
     CREATE TABLE IF NOT EXISTS balance(
       id          INT,
       budget      NUMERIC(12,2)
+      income      NUMERIC(12,2)
 )`
 
   try {

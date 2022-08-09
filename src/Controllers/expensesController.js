@@ -11,7 +11,7 @@ const getExpenses = async (req, res) => {
 }
 
 const createExpense = async (req, res) => {
-  const { name, detail, amount } = req.body
+  const { name, seller, detail, amount } = req.body
 
   let id = await db.any('SELECT MAX(id) FROM expenses')
   const newId = id[0].max
@@ -24,19 +24,33 @@ const createExpense = async (req, res) => {
 
   const date = Date.now()
 
-  if (!name || !amount || !detail) {
-    return res.status(400).send('Name, detail and amount are required')
+  if (!name || !amount || !seller || !detail) {
+    return res.status(400).send('Name, seller, detail and amount are required')
   } else if (amount < 0) {
     return res.status(400).send('Amount must be a positive number')
   } else {
-    const statement = 'INSERT INTO expenses (id, name, detail, amount, date) VALUES ($1, $2, $3, $4, $5)'
-    const values = [id, name, detail, amount, date]
+    const results = await db.any('SELECT name FROM envelopes WHERE name = $1', name)
 
-    const results = db.any(statement, values)
-    if (!results) {
-      res.status(500).send('Error creating expense')
+    if (results.length === 0) {
+      return res.status(400).send('Envelope does not exist')
     } else {
-      res.status(200).send(`Expense created: ${name} - ${amount}`)
+      const budget = await db.one('SELECT amount FROM envelopes WHERE name = $1', name)
+      const expenses = await db.any('SELECT sum(amount) FROM expenses WHERE name = $1', name)
+      const balance = budget.amount - expenses[0].sum
+
+      if (amount > balance) {
+        return res.status(400).send('Expense exceeds budget')
+      } else {
+        const statement = 'INSERT INTO expenses (id, name, seller, detail, amount, date) VALUES ($1, $2, $3, $4, $5, $6)'
+        const values = [id, name, seller, detail, amount, date]
+
+        const results = db.any(statement, values)
+        if (!results) {
+          res.status(500).send('Error creating expense')
+        } else {
+          res.status(200).send(`Expense created: ${name} - ${amount}`)
+        }
+      }
     }
   }
 }

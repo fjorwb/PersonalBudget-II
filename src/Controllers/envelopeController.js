@@ -27,23 +27,32 @@ const getEnvelopeByName = async (req, res) => {
 const createEnvelope = async (req, res) => {
   const { name, description, amount } = req.body
 
-  let id = await db.any('SELECT MAX(id) FROM envelopes')
-  const newId = id[0].max
-
-  if (newId === null) {
-    id = 1
+  const exists = await db.any('SELECT * FROM envelopes WHERE name = $1', [name])
+  if (exists.length > 0) {
+    res.status(400).send('Envelope already exists')
   } else {
-    id = newId + 1
-  }
+    if (!name || !description || !amount) {
+      res.status(400).send('Missing required fields')
+    } else {
+      let id = await db.any('SELECT MAX(id) FROM envelopes')
+      const newId = id[0].max
 
-  const statement = 'INSERT INTO envelopes (id, name, description, amount) VALUES ($1, $2, $3, $4)'
-  const values = [id, name, description, amount]
+      if (newId === null) {
+        id = 1
+      } else {
+        id = newId + 1
+      }
 
-  const results = db.any(statement, values)
-  if (!results) {
-    res.status(500).send('Error creating envelope')
-  } else {
-    res.status(201).send(`Envelope "${name}" created with amount ${amount}`)
+      const statement = 'INSERT INTO envelopes (id, name, description, amount) VALUES ($1, $2, $3, $4)'
+      const values = [id, name, description, amount]
+
+      const results = db.any(statement, values)
+      if (!results) {
+        res.status(500).send('Error creating envelope')
+      } else {
+        res.status(201).send(`Envelope "${name}" created with amount ${amount}`)
+      }
+    }
   }
 }
 

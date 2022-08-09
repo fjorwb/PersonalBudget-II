@@ -3,5 +3,5 @@ Content-Type: application/json
 
 {
   "detail": "full tank",
-  "amount": 155
+  "amount": 150
 }

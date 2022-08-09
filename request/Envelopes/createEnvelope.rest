@@ -2,7 +2,7 @@ POST http://localhost:3000/env
 Content-Type: application/json
 
 {
-  "name": "transportation",
-  "description": "expense on bus, taxis, etc",
-  "amount" : 265
+  "name": "entertainment",
+  "description": "movies, cable, dinning",
+  "amount" : 500
 }
