@@ -43,22 +43,22 @@ Once it is installed run the app locally, API could be accessed at http://localh
 Swagger documentation and testing available at http://localhost:3000/api/docs
 
 ### Envelopes:
-getAllEnvelopes: GET /env
-createEnvelope: POST /env
-UpdateEnvelope: PUT /env/:name (envelope name)
-deleteEnvelope: DELETE /env/:name (envelope name)
-Transfer an amount from a specific envelope to another one using POST /transfer?from=:id&to=:id&amount=:amount
+- getAllEnvelopes: GET /env
+- createEnvelope: POST /env
+- UpdateEnvelope: PUT /env/:name (envelope name)
+- deleteEnvelope: DELETE /env/:name (envelope name)
+- Transfer an amount from a specific envelope to another one using POST /transfer?from=:id&to=:id&amount=:amount
 
 ### Expenses:
-getAllExpenses: GET /exp
-createExpense: POST /exp
-UpdateExpense: PUT /exp/:id
-deleteExpense: DELETE /exp/:id
+- getAllExpenses: GET /exp
+- createExpense: POST /exp
+- UpdateExpense: PUT /exp/:id
+- deleteExpense: DELETE /exp/:id
 
 ### Balance:
-setIncome: POST /budget/income
-setBudget: POST /budget
-getBalance: GET /budget
+- setIncome: POST /budget/income
+- setBudget: POST /budget
+- getBalance: GET /budget
 
 ## How to use
 Using Swagger at http://localhost:3000/api/docs you could try all the endpoints to perform CRUD operations.
