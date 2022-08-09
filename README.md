@@ -1,6 +1,5 @@
 # Personal-Budget
-The Personal Budget
-A web application to manage your budget.
+- A web application to manage your budget.
 
 ## Table of contents
 - Description
@@ -12,16 +11,21 @@ A web application to manage your budget.
 - Source
 
 ## Description
-Context: This project satisfy all the requirements of the Portfolio - Personal Budget I of the Back-End Engineering path. This was built with node and express, using global.variables to store and retrieve data.
+- This project satisfy all the requirements of the Portfolio - Personal Budget II of the Back-End Engineering path. This was built with node and express, postgres SQL to store and retrieve data.
 
 ## Project Objectives
-Build an API using Node.js and Express
-Be able to create, read, update, and delete envelopes
-Be able to create, read, update, delete and make transaction between envelopes.
-Add functionality to CRUD expenses and produce a Balance.
-Use Git version control to keep track of your work
-Use Postman to test API endpoints
-Document the project using JSDoc and Swagger.
+- Build an API using Node.js and Express
+- Be able to create, read, update, and delete envelopes
+- Be able to create, read, update, delete and make transaction between envelopes.
+- Add functionality to CRUD expenses and produce a Balance.
+- Use Git version control to keep track of your work
+- Use Postman to test API endpoints
+- Implement a database
+- Integrate existing API endpoints with database layer
+- Database implementation for transactions
+- Deploy the app using Heroku
+- Create documentation using the Swagger API
+- Document the project using JSDoc and Swagger.
 
 ## Technology
 Project is created with:
@@ -31,7 +35,7 @@ Project is created with:
 - Express.js
 - HTML
 - CSS
-- Postgresql
+- Postgres SQL
 - Swagger
 
 ## Launch
