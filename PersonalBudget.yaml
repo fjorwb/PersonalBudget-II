@@ -1,0 +1,267 @@
+openapi: 3.0.0
+info:
+  title: PersonalBudget-I
+  description: Personal Budget
+  contact: {}
+  version: '1.0'
+servers:
+- url: http://localhost:3000
+  variables: {}
+paths:
+  /env:
+    get:
+      tags:
+      - Envelopes
+      summary: getEnvelopes
+      operationId: getEnvelopes
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+      - Envelopes
+      summary: createEnvelope
+      operationId: createEnvelope
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createEnvelopeRequest'
+            example:
+              name: health
+              amount: 400
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /env/{name}:
+    put:
+      tags:
+      - Envelopes
+      summary: updateEnvelope
+      operationId: updateEnvelope
+      parameters:
+        - name: name
+          in: path
+          description: Envelope name
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateEnvelopeRequest'
+            example:
+              amount: 450
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+      - Envelopes
+      summary: deleteEnvelope
+      operationId: deleteEnvelope
+      parameters:
+        - name: name
+          in: path
+          description: Envelope name
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /expenses:
+    get:
+      tags:
+      - Expenses
+      summary: getExpenses
+      operationId: getExpenses
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+      - Expenses
+      summary: createExpenses
+      operationId: createExpenses
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createExpensesRequest'
+            example:
+              name: gas
+              amount: 20
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /expenses/{id}:
+    delete:
+      tags:
+      - Expenses
+      summary: deleteExpense
+      operationId: deleteExpense
+      parameters:
+        - name: id
+          in: path
+          description: Envelope name
+          required: true
+          schema:
+            type: integer
+            format: int64   
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    put:
+      tags:
+      - Expenses
+      summary: updateExpense
+      operationId: updateExpense
+      parameters:
+        - name: id
+          in: path
+          description: Envelope name
+          required: true
+          schema:
+            type: integer
+            format: int64   
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateExpenseRequest'
+            example:
+              amount: 25
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /budget:
+    post:
+      tags:
+      - Balance
+      summary: setBalance
+      operationId: setBalance
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/setBalanceRequest'
+            example:
+              budget: 1200
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+      - Balance
+      summary: getBalance
+      operationId: getBalance
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    createEnvelopeRequest:
+      title: createEnvelopeRequest
+      required:
+      - name
+      - amount
+      type: object
+      properties:
+        name:
+          type: string
+        amount:
+          type: integer
+          format: int32
+      example:
+        name: health
+        amount: 400
+    updateEnvelopeRequest:
+      title: updateEnvelopeRequest
+      required:
+      - amount
+      type: object
+      properties:
+        amount:
+          type: integer
+          format: int32
+      example:
+        amount: 450
+    createExpensesRequest:
+      title: createExpensesRequest
+      required:
+      - name
+      - amount
+      type: object
+      properties:
+        name:
+          type: string
+        amount:
+          type: integer
+          format: int32
+      example:
+        name: gas
+        amount: 20
+    updateExpenseRequest:
+      title: updateExpenseRequest
+      required:
+      - amount
+      type: object
+      properties:
+        amount:
+          type: integer
+          format: int32
+      example:
+        amount: 25
+    setBalanceRequest:
+      title: setBalanceRequest
+      required:
+      - budget
+      type: object
+      properties:
+        budget:
+          type: integer
+          format: int32
+      example:
+        budget: 1200
+tags:
+- name: Envelopes
+- name: Expenses
+- name: Balance

@@ -1,0 +1,6 @@
+PUT http://localhost:3000/env/transportation
+Content-Type: application/json
+
+{
+  "amount" : 275
+}

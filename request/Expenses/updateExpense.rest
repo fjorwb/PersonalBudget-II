@@ -1,0 +1,7 @@
+PUT http://localhost:3000/expenses/1
+Content-Type: application/json
+
+{
+  "detail": "full tank",
+  "amount": 155
+}
