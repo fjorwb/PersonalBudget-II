@@ -85,7 +85,7 @@ const deleteEnvelope = async (req, res) => {
   }
 }
 
-const transferMoney = (req, res) => {
+const tranferFunds = (req, res) => {
   const { from, to, amount } = req.query
 
   let statement = 'UPDATE envelopes SET amount = amount - $1 WHERE name = $2'
@@ -107,4 +107,4 @@ const transferMoney = (req, res) => {
   }
 }
 
-module.exports = { getEnvelopes, getEnvelopeByName, createEnvelope, updateEnvelope, deleteEnvelope, transferMoney }
+module.exports = { getEnvelopes, getEnvelopeByName, createEnvelope, updateEnvelope, deleteEnvelope, tranferFunds }
