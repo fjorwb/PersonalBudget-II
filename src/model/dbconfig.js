@@ -6,7 +6,7 @@ let ssl = null
 
 if (process.env.NODE_ENV === 'production') {
   ssl = {
-    rejectUnauthorized: true
+    rejectUnauthorized: false
   }
 }
 
