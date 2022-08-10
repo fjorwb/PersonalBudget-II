@@ -2,7 +2,7 @@ const { db } = require('../model/dbconfig')
 
 const getEnvelopes = async (req, res) => {
   const results = await db.any('SELECT * FROM envelopes ORDER BY id ASC')
-  if (!results) {
+  if (results.length === 0) {
     res.status(404).send('No envelopes found')
   } else {
     res.status(200).send(results)
